@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "scipy-notebook"
+version = "0.1.0"
+description = "Python Datascience docker images for mybinder.org"
+authors = ["Andreas Trawöger <atrawog@dorgeln.org>"]
+license = "Apache-2.0"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+matplotlib = "^3.3.4"
+scikit-image = "^0.18.1"
+rasterio = "^1.2.1"
+rio-tiler = "^2.0.3"
+rio-tiler-pds = "^0.5.0"
+jupyterlab = "^3.0.9"
+numpy = "^1.20.1"
+pandas = "^1.2.3"
+altair = "^4.1.0"
+altair-saver = "^0.5.0"
+selenium = "^3.141.0"
+cysgp4 = "^0.3.3"
+chromedriver-py = "^89.0.4389"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
