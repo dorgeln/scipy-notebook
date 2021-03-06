@@ -20,6 +20,11 @@ altair-saver = "^0.5.0"
 selenium = "^3.141.0"
 cysgp4 = "^0.3.3"
 chromedriver-py = "^89.0.4389"
+Cython = "^0.29.22"
+setuptools = "^54.1.0"
+wheel = "^0.36.2"
+setuptools-scm = "^5.0.2"
+sgp4 = "^2.17"
 
 [tool.poetry.dev-dependencies]
 
