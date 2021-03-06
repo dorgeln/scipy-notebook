@@ -1,5 +1,7 @@
+ARG PYTHON_VERSION=3.8.8
+
 # `python-base` sets up all our shared environment variables
-FROM python:3.8-slim as python-base
+FROM python:${PYTHON_VERSION}-slim as python-base
 
 # python
 ENV PYTHONUNBUFFERED=1 \
@@ -35,11 +37,8 @@ ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 # `builder-base` stage is used to build deps + create our virtual environment
 FROM python-base as builder-base
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y \
-    # deps for installing poetry
-    curl \
-    # deps for building python deps
-    build-essential
+    && apt-get install --no-install-recommends -y curl build-essential ffmpeg dvipng cm-super&& \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # install poetry - respects $POETRY_VERSION & $POETRY_HOME
 RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
@@ -77,5 +76,9 @@ RUN adduser --disabled-password \
     --gecos "Default user" \
     --uid ${NB_UID} \
     ${NB_USER}
+
+ENV XDG_CACHE_HOME="/home/${NB_USER}/.cache/"
+
+RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot"
 WORKDIR ${HOME}
 USER ${USER} 
