@@ -54,6 +54,9 @@ RUN poetry install --no-dev -vv
 
 # `development` image is used during development / testing
 FROM python-base as development
+
+USER $NB_UID
+
 ENV FASTAPI_ENV=development
 WORKDIR $PYSETUP_PATH
 
@@ -65,8 +68,8 @@ COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 RUN poetry install -vv
 
 # create user with a home directory
-ARG NB_USER
-ARG NB_UID
+ARG NB_USER=auser 
+ARG NB_UID=1000
 ENV USER ${NB_USER}
 ENV HOME /home/${NB_USER}
 
