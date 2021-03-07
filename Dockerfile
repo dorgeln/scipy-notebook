@@ -18,7 +18,7 @@ ENV PYTHONUNBUFFERED=1 \
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y curl build-essential ffmpeg dvipng cm-super libgomp1 chromium-chromedriver && \
+    && apt-get install --no-install-recommends -y curl build-essential ffmpeg dvipng cm-super libgomp1 chromium-driver && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
